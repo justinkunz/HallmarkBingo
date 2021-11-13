@@ -12,7 +12,7 @@ const FlexCell = styled.div<FlexCellProps>`
     display: flex;
     justify-content: center;
     background: ${({ backgroundColor }) => backgroundColor};
-    border: solid 1px black;
+    border: solid 1px ${theme.dark};
   }
 
   &:before {
@@ -23,7 +23,7 @@ const FlexCell = styled.div<FlexCellProps>`
 `;
 
 const FlexItemWrapper = styled.div`
-  max-height: 25vw;
+  max-height: 20vw;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -36,12 +36,18 @@ const FlexItem = styled.div`
   height: 100%;
   text-align: center;
   color: ${theme.light};
+  text-transform: capitalize;
 `;
 
-const Card: React.FC = ({ children }) => {
-  const [selected, setSelected] = React.useState<boolean>(false);
+interface CardProps {
+  defaultSelected: boolean;
+  locked: boolean;
+}
 
-  const handleClick = () => setSelected(!selected);
+const Card: React.FC<CardProps> = ({ children, defaultSelected, locked }) => {
+  const [selected, setSelected] = React.useState<boolean>(defaultSelected);
+
+  const handleClick = () => !locked && setSelected(!selected);
 
   return (
     <FlexCell backgroundColor={selected ? theme.secondary : theme.primary} onClick={handleClick}>

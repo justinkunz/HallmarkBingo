@@ -8,8 +8,10 @@ function BingoBoard() {
     <React.Fragment>
       {rows.map((row, index) => (
         <Flex key={`row-${index}`} flexDirection='row' justifyContent='space-around'>
-          {row.map((text) => (
-            <Card key={`card-${text}`}>{text}</Card>
+          {row.map(({ text, defaultSelected, locked }) => (
+            <Card key={`card-${text}`} defaultSelected={defaultSelected} locked={locked}>
+              {text}
+            </Card>
           ))}
         </Flex>
       ))}
