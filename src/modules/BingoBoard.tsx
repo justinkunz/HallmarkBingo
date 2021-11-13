@@ -1,6 +1,7 @@
 import React from 'react';
-import { Flex, Card } from '../components';
+import { Flex } from '../components';
 import { useBingoBoard } from '../hooks';
+import Card from './Card';
 
 function BingoBoard() {
   const { rows } = useBingoBoard();
