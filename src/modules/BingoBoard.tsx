@@ -5,6 +5,7 @@ import Card from './Card';
 
 function BingoBoard() {
   const { rows } = useBingoBoard();
+
   return (
     <React.Fragment>
       {rows.map((row, index) => (
