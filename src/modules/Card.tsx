@@ -1,6 +1,7 @@
 import React from 'react';
 import theme from '../theme.json';
 import { Flex, FlexCell } from '../components';
+import justin from '../assets/justin.png';
 
 interface CardProps {
   defaultSelected: boolean;
@@ -23,7 +24,7 @@ const Card: React.FC<CardProps> = ({ children, defaultSelected, locked }) => {
         textTransform='capitalize'
         overflow='hidden'
       >
-        {children}
+        {locked ? <img src={justin} alt='' height='100%' width='100%' /> : children}
       </Flex>
     </FlexCell>
   );
