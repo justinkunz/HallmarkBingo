@@ -1,6 +1,7 @@
 import React from 'react';
-import { BingoBoard, Header } from './modules';
+import { BingoBoard, Header, Version } from './modules';
 import { Flex, Wrapper } from './components';
+import { version } from './version.json';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       >
         <BingoBoard />
       </Flex>
+      <Version version={version} />
     </Wrapper>
   );
 }
