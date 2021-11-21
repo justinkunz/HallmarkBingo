@@ -9,6 +9,7 @@ interface FlexProps {
   textAlign?: 'left' | 'center' | 'right';
   textTransform?: string;
   overflow?: 'visible' | 'hidden';
+  alignItems?: string;
 }
 
 const Flex = styled.div<FlexProps>`
@@ -21,6 +22,7 @@ const Flex = styled.div<FlexProps>`
   ${({ color }) => color && `color: ${color};`}
   ${({ textTransform }) => textTransform && `text-transform: ${textTransform};`}
   ${({ overflow }) => overflow && `overflow: ${overflow};`}
+   ${({ alignItems }) => alignItems && `align-items: ${alignItems};`}
 `;
 
 export default Flex;

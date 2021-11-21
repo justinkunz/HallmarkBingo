@@ -2,11 +2,13 @@ import React from 'react';
 import arrayfriend from 'arrayfriend';
 import options from '../data/options.json';
 import copyText from '../copy.json';
+import freeSpaceImage from '../assets/justin.png';
 
 interface Row {
   text: string;
   defaultSelected: boolean;
   locked: boolean;
+  image: string | null;
 }
 
 function useBingoBoard() {
@@ -19,13 +21,17 @@ function useBingoBoard() {
   const rows = arrayfriend(...shuffledOptions)
     .batch(5)
     .slice(0, 5)
-    .map((row) => row.map((text) => ({ text, defaultSelected: false, locked: false })) as Row[]);
+    .map(
+      (row) =>
+        row.map((text) => ({ text, defaultSelected: false, locked: false, image: null })) as Row[]
+    );
 
   if (rows.length) {
     rows[2][2] = {
       text: copyText.freeSpace,
       defaultSelected: true,
       locked: true,
+      image: freeSpaceImage,
     };
   }
 

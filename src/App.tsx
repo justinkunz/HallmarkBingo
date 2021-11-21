@@ -6,7 +6,13 @@ function App() {
   return (
     <Wrapper>
       <Header />
-      <Flex justifyContent='center' flexDirection='column' height='100vh' scale={0.95}>
+      <Flex
+        justifyContent='center'
+        flexDirection='column'
+        height='100vh'
+        scale={0.95}
+        alignItems='center'
+      >
         <BingoBoard />
       </Flex>
     </Wrapper>
