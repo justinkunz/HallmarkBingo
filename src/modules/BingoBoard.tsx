@@ -7,7 +7,7 @@ function BingoBoard() {
   const { rows } = useBingoBoard();
 
   return (
-    <Box maxWidth='500px'>
+    <Box maxWidth='600px'>
       {rows.map((row, index) => (
         <Flex key={`row-${index}`} flexDirection='row' justifyContent='space-around'>
           {row.map(({ text, defaultSelected, locked, image }) => (
