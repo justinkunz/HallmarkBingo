@@ -11,7 +11,7 @@ const FlexCell = styled.div<FlexCellProps>`
     display: flex;
     justify-content: center;
     background: ${({ backgroundColor }) => backgroundColor};
-    border: solid 1px ${theme.dark};
+    border: solid 1px ${theme.palette.dark};
   }
 
   &:before {

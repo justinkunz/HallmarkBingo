@@ -7,9 +7,16 @@ let majorVersion = parseInt(version.slice(1, version.indexOf('.')));
 let minorVersion = parseInt(version.slice(version.indexOf('.') + 1, version.lastIndexOf('.')));
 let hotfixVersion = parseInt(version.slice(version.lastIndexOf('.') + 1, version.length));
 
-if (bumpV === 'major') majorVersion++;
-if (bumpV === 'minor') minorVersion++;
-if (bumpV === 'hotfix') hotfixVersion++;
+if (bumpV === 'major') {
+  majorVersion++;
+  minorVersion = 0;
+  hotfixVersion = 0;
+} else if (bumpV === 'minor') {
+  minorVersion++;
+  hotfixVersion = 0;
+} else if (bumpV === 'hotfix') {
+  hotfixVersion++;
+}
 
 const newVersion = `v${majorVersion}.${minorVersion}.${hotfixVersion}`;
 

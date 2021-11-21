@@ -1,8 +1,14 @@
 {
-  "primary": "#901a1a",
-  "secondary": "#28543c",
-  "light": "#fffeed",
-  "accent": "#d03b3b",
-  "dark": "#1a1919",
-  "meta": "#262525"
+  "palette": {
+    "primary": "#901a1a",
+    "secondary": "#28543c",
+    "light": "#fffeed",
+    "accent": "#d03b3b",
+    "dark": "#1a1919",
+    "meta": "#262525"
+  },
+  "font": {
+    "default": "'Ubuntu', sans-serif",
+    "heading": "'Satisfy', cursive"
+  }
 }
