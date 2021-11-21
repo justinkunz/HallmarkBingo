@@ -1,6 +1,7 @@
 import React from 'react';
 import theme from '../theme.json';
 import { Flex, FlexCell } from '../components';
+import { useBingoCard } from '../hooks';
 
 interface CardProps {
   defaultSelected: boolean;
@@ -9,12 +10,10 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ children, defaultSelected, locked, imageSrc }) => {
-  const [selected, setSelected] = React.useState<boolean>(defaultSelected);
-
-  const handleClick = () => !locked && setSelected(!selected);
+  const { isSelected, onClick } = useBingoCard({ defaultSelected, locked });
 
   return (
-    <FlexCell backgroundColor={selected ? theme.secondary : theme.primary} onClick={handleClick}>
+    <FlexCell backgroundColor={isSelected ? theme.secondary : theme.primary} onClick={onClick}>
       <Flex
         flexDirection='column'
         justifyContent='center'
