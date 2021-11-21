@@ -1,3 +1,3 @@
 # Hallmark Christmas Movie Bingo
 
-_Available at [movies.bingo](https://www.movies.bingo)_
+_Available [here](https://hallmarkbingo.netlify.app/)_
