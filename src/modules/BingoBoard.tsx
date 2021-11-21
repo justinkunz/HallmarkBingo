@@ -7,7 +7,7 @@ function BingoBoard() {
   const { rows } = useBingoBoard();
 
   return (
-    <Box maxWidth='720px'>
+    <Box maxWidth='680px'>
       <BoxShadow>
         {rows.map((row, index) => (
           <Flex key={`row-${index}`} flexDirection='row' justifyContent='space-around'>
