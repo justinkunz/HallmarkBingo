@@ -6,11 +6,13 @@ interface TextProps {
   color?: string;
   flexibleSize?: boolean;
   asHeading?: boolean;
+  bold?: boolean;
 }
 
 const Text = styled.span<TextProps>`
   ${({ fontSize = 12 }) => `font-size: ${fontSize}px;`}
   ${({ color }) => color && `color: ${color};`}
+  ${({ bold }) => bold && `font-weight: 900;`}
   font-family: ${({ asHeading = false }) => (asHeading ? theme.font.heading : theme.font.default)};
 
   ${({ flexibleSize, fontSize = 12 }) =>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../theme.json';
 
 interface BoxProps {
   height?: string | number;
@@ -16,6 +17,7 @@ interface BoxProps {
   textAlign?: string;
   backgroundColor?: string;
   clickable?: boolean;
+  withBorder?: boolean;
 }
 const Box = styled.div<BoxProps>`
   ${({ height }) => height && `height: ${height};`}
@@ -32,6 +34,7 @@ const Box = styled.div<BoxProps>`
   ${({ lineHeight }) => lineHeight && `line-height: ${lineHeight};`}
   ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
   ${({ backgroundColor }) => backgroundColor && `background-color: ${backgroundColor};`}
+  ${({ withBorder }) => withBorder && `border: solid 1px ${theme.palette.dark};`}
   ${({ clickable }) =>
     clickable &&
     `

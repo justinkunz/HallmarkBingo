@@ -1,27 +1,31 @@
 import React from 'react';
 import { Box, BoxShadow, Flex } from '../components';
 import { useBingoBoard } from '../hooks';
+import BingoTitle from './BingoTitle';
 import Card from './Card';
 
 function BingoBoard() {
-  const { rows } = useBingoBoard();
+  const { hasBingo, rows } = useBingoBoard();
 
   return (
-    <Box maxWidth='680px'>
+    <Box maxWidth='640px'>
       <BoxShadow>
-        {rows.map((row, index) => (
-          <Flex key={`row-${index}`} flexDirection='row' justifyContent='space-around'>
-            {row.map(({ text, defaultSelected, locked, image }) => (
-              <Card
-                key={`card-${text}`}
-                defaultSelected={defaultSelected}
-                locked={locked}
-                imageSrc={image}
-                text={text}
-              />
-            ))}
-          </Flex>
-        ))}
+        <React.Fragment>
+          <BingoTitle hasBingo={hasBingo} />
+          {rows.map((row, index) => (
+            <Flex key={`row-${index}`} flexDirection='row' justifyContent='space-around'>
+              {row.map(({ text, selected, image, onClick }) => (
+                <Card
+                  key={`card-${text}`}
+                  imageSrc={image}
+                  text={text}
+                  selected={selected}
+                  onClick={onClick}
+                />
+              ))}
+            </Flex>
+          ))}
+        </React.Fragment>
       </BoxShadow>
     </Box>
   );
