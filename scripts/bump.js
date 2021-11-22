@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { version } = require('../src/version.json');
+const packageJson = require('../package.json');
 const [, , bumpV] = process.argv;
 
 let majorVersion = parseInt(version.slice(1, version.indexOf('.')));
@@ -18,10 +19,13 @@ if (bumpV === 'major') {
   hotfixVersion++;
 }
 
-const newVersion = `v${majorVersion}.${minorVersion}.${hotfixVersion}`;
+const newVersion = `${majorVersion}.${minorVersion}.${hotfixVersion}`;
 
 console.log(`New version: ${newVersion}`);
 fs.writeFileSync(
   path.join('src', 'version.json'),
-  JSON.stringify({ version: newVersion }, null, 2)
+  JSON.stringify({ version: `v${newVersion}` }, null, 2)
 );
+
+packageJson.version = newVersion;
+fs.writeFileSync(path.join('package.json'), JSON.stringify(packageJson, null, 2));

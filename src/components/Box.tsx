@@ -18,6 +18,7 @@ interface BoxProps {
   backgroundColor?: string;
   clickable?: boolean;
   withBorder?: boolean;
+  withBoxShadow?: boolean;
 }
 const Box = styled.div<BoxProps>`
   ${({ height }) => height && `height: ${height};`}
@@ -35,6 +36,7 @@ const Box = styled.div<BoxProps>`
   ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
   ${({ backgroundColor }) => backgroundColor && `background-color: ${backgroundColor};`}
   ${({ withBorder }) => withBorder && `border: solid 1px ${theme.palette.dark};`}
+  ${({ withBoxShadow }) => withBoxShadow && `box-shadow: 8px 8px 14px -6px rgb(47 46 46 / 77%);`}
   ${({ clickable }) =>
     clickable &&
     `

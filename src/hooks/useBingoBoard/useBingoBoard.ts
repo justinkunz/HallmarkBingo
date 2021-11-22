@@ -1,9 +1,6 @@
 import React from 'react';
 import useShuffledOptions, { RowItem } from './useShuffledOptions';
-
-interface SelectedState {
-  [key: string]: boolean;
-}
+import useBoardRows from './useBoardRows';
 
 interface RowItemWithSelect extends RowItem {
   onClick: () => void;
@@ -13,28 +10,8 @@ interface RowItemWithSelect extends RowItem {
 type Rows = Array<RowItemWithSelect[]>;
 
 function useBingoBoard() {
-  const [selected, setSelected] = React.useState<SelectedState>({});
   const { shuffledOptions } = useShuffledOptions();
-
-  React.useEffect(() => {
-    const defaultSelected = shuffledOptions.flat().reduce((acc, item) => {
-      acc[item.text] = item.defaultSelected;
-      return acc;
-    }, {} as SelectedState);
-    setSelected(defaultSelected);
-  }, [shuffledOptions]);
-
-  const handleClick = (id: string) => {
-    setSelected({ ...selected, [id]: !selected[id] });
-  };
-
-  const rows = shuffledOptions.map((row) =>
-    row.map((item) => ({
-      ...item,
-      onClick: () => handleClick(item.text),
-      selected: selected[item.text],
-    }))
-  );
+  const { rows } = useBoardRows({ shuffledOptions });
 
   const hasBingo = React.useMemo(() => {
     const checkRows = (rows: Rows) => rows.some((row) => row.every((item) => item.selected));
@@ -64,8 +41,8 @@ function useBingoBoard() {
   }, [rows]);
 
   return {
-    hasBingo,
     rows,
+    hasBingo,
   };
 }
 
