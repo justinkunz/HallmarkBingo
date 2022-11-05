@@ -5,7 +5,8 @@ const Button = styled.button`
   background-color: ${theme.palette.accent};
   color: ${theme.palette.light};
   font-family: ${theme.font.default};
-  padding: 8px 12px;
+  padding: 14px 20px;
+  font-size: 18px;
   border-radius: 8px;
   border: none;
 `;

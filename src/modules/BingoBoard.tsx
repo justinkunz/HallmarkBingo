@@ -42,7 +42,7 @@ function BingoBoard() {
             </Flex>
           ))}
         </Box>
-        <Box position="fixed" bottom="0" margin="8px">
+        <Box position="fixed" bottom="0" margin="12px">
           <Button onClick={onClearBoardClick}>{clearBoardCopy}</Button>
         </Box>
       </Flex>
