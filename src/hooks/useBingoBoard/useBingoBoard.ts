@@ -1,5 +1,6 @@
 import React from "react";
 import copy from "../../copy.json";
+import theme from "../../theme.json";
 import { BINGO_BOARD_SESSION_KEY } from "../../constants";
 import useShuffledOptions, { RowItem } from "./useShuffledOptions";
 import useBoardRows from "./useBoardRows";
@@ -21,7 +22,6 @@ function useBingoBoard() {
     window.location.reload();
   }, []);
 
-  console.log("isBoardEmpty", isBoardEmpty);
   const handleClearBoardClick = React.useCallback(() => {
     if (isBoardEmpty || hasClickedOnce) return clearBoard();
     setHasClickedOnce(true);
@@ -54,6 +54,16 @@ function useBingoBoard() {
     if (checkRows([diagonalLeft, diagonalRight])) return true;
     return false;
   }, [rows]);
+
+  React.useEffect(() => {
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.setAttribute(
+        "content",
+        hasBingo ? theme.palette.secondary_accent : theme.palette.accent
+      );
+    }
+  }, [hasBingo]);
 
   return {
     rows,
