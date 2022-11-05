@@ -1,17 +1,31 @@
-import React from 'react';
-import arrayfriend from 'arrayfriend';
-import options from '../../data/options.json';
-import copyText from '../../copy.json';
-import freeSpaceImage from '../../assets/justin.png';
+import React from "react";
+import arrayfriend from "arrayfriend";
+import { BINGO_BOARD_SESSION_KEY } from "../../constants";
+import options from "../../data/options.json";
+import copyText from "../../copy.json";
+import freeSpaceImage from "../../assets/justin.png";
 
 export interface RowItem {
   text: string;
   defaultSelected: boolean;
   locked: boolean;
   image: string | null;
+  selected?: boolean;
 }
 
 function useShuffledOptions() {
+  const storedShuffledOptions = React.useMemo(() => {
+    try {
+      const storedOptions = window.sessionStorage.getItem(
+        BINGO_BOARD_SESSION_KEY
+      );
+      if (storedOptions) return JSON.parse(storedOptions) as Array<RowItem[]>;
+      return null;
+    } catch (err) {
+      return null;
+    }
+  }, []);
+
   const shuffledOptions = React.useMemo(
     () =>
       arrayfriend(...arrayfriend(...options).shuffle())
@@ -39,7 +53,9 @@ function useShuffledOptions() {
     []
   );
 
-  return { shuffledOptions };
+  return {
+    shuffledOptions: storedShuffledOptions || shuffledOptions,
+  };
 }
 
 export default useShuffledOptions;

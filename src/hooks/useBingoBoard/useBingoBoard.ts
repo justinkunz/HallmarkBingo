@@ -1,6 +1,8 @@
-import React from 'react';
-import useShuffledOptions, { RowItem } from './useShuffledOptions';
-import useBoardRows from './useBoardRows';
+import React from "react";
+import copy from "../../copy.json";
+import { BINGO_BOARD_SESSION_KEY } from "../../constants";
+import useShuffledOptions, { RowItem } from "./useShuffledOptions";
+import useBoardRows from "./useBoardRows";
 
 interface RowItemWithSelect extends RowItem {
   onClick: () => void;
@@ -11,10 +13,23 @@ type Rows = Array<RowItemWithSelect[]>;
 
 function useBingoBoard() {
   const { shuffledOptions } = useShuffledOptions();
-  const { rows } = useBoardRows({ shuffledOptions });
+  const { rows, isBoardEmpty } = useBoardRows({ shuffledOptions });
+  const [hasClickedOnce, setHasClickedOnce] = React.useState(false);
+
+  const clearBoard = React.useCallback(() => {
+    window.sessionStorage.removeItem(BINGO_BOARD_SESSION_KEY);
+    window.location.reload();
+  }, []);
+
+  console.log("isBoardEmpty", isBoardEmpty);
+  const handleClearBoardClick = React.useCallback(() => {
+    if (isBoardEmpty || hasClickedOnce) return clearBoard();
+    setHasClickedOnce(true);
+  }, [isBoardEmpty, hasClickedOnce, clearBoard]);
 
   const hasBingo = React.useMemo(() => {
-    const checkRows = (rows: Rows) => rows.some((row) => row.every((item) => item.selected));
+    const checkRows = (rows: Rows) =>
+      rows.some((row) => row.every((item) => item.selected));
     if (checkRows(rows)) return true;
 
     const verticalRows = rows.reduce((acc, curr, i) => {
@@ -43,6 +58,12 @@ function useBingoBoard() {
   return {
     rows,
     hasBingo,
+    onClearBoardClick: handleClearBoardClick,
+    clearBoardCopy:
+      hasClickedOnce && !isBoardEmpty
+        ? copy.clearBoardButton.confirm
+        : copy.clearBoardButton.static,
+    isBoardEmpty,
   };
 }
 

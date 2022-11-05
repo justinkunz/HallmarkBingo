@@ -1,5 +1,6 @@
-import React from 'react';
-import { RowItem } from './useShuffledOptions';
+import React from "react";
+import { RowItem } from "./useShuffledOptions";
+import { BINGO_BOARD_SESSION_KEY } from "../../constants";
 
 interface UseBoardRows {
   shuffledOptions: Array<RowItem[]>;
@@ -10,10 +11,11 @@ interface SelectedState {
 
 function useBoardRows({ shuffledOptions }: UseBoardRows) {
   const [selected, setSelected] = React.useState<SelectedState>({});
+  const [isBoardEmpty, setIsBoardEmpty] = React.useState(false);
 
   React.useEffect(() => {
     const defaultSelected = shuffledOptions.flat().reduce((acc, item) => {
-      acc[item.text] = item.defaultSelected;
+      acc[item.text] = Boolean(item.defaultSelected || item.selected);
       return acc;
     }, {} as SelectedState);
     setSelected(defaultSelected);
@@ -32,7 +34,20 @@ function useBoardRows({ shuffledOptions }: UseBoardRows) {
     }))
   );
 
+  React.useEffect(() => {
+    setIsBoardEmpty(
+      !rows.some((row) =>
+        row.some((square) => square.selected && !square.locked)
+      )
+    );
+    window.sessionStorage.setItem(
+      BINGO_BOARD_SESSION_KEY,
+      JSON.stringify(rows)
+    );
+  }, [rows]);
+
   return {
+    isBoardEmpty,
     rows,
   };
 }

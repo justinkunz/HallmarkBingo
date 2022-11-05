@@ -1,5 +1,9 @@
 {
   "freeSpace": "Free Space",
   "heading": "Hallmark Christmas Bingo",
-  "bingoTitle": "Bingo"
+  "bingoTitle": "Bingo",
+  "clearBoardButton": {
+    "static": "Clear Board",
+    "confirm": "You sure?"
+  }
 }
