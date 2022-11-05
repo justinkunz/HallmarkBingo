@@ -6,8 +6,7 @@ import BingoTitle from "./BingoTitle";
 import Card from "./Card";
 
 function BingoBoard() {
-  const { clearBoardCopy, hasBingo, rows, onClearBoardClick, isBoardEmpty } =
-    useBingoBoard();
+  const { clearBoardCopy, hasBingo, rows, onClearBoardClick } = useBingoBoard();
 
   return (
     <React.Fragment>
