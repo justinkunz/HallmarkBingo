@@ -6,7 +6,12 @@
     "accent": "#d03b3b",
     "secondary_accent": "#218750",
     "dark": "#1a1919",
-    "meta": "#262525"
+    "meta": "#262525",
+    "yellow": "#f3f32d",
+    "orange": "#ff9d00",
+    "blue": "#14a6ff",
+    "purple": "#7314ff",
+    "pink": "#ff1491"
   },
   "font": {
     "default": "'Ubuntu', sans-serif",
