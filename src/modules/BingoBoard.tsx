@@ -42,10 +42,12 @@ function BingoBoard() {
             </Flex>
           ))}
         </Box>
-        <Box position="fixed" bottom="0" margin="12px">
-          <Button onClick={onClearBoardClick}>{clearBoardCopy}</Button>
-        </Box>
       </Flex>
+      <Box position="fixed" bottom="0" left="0" right="0" margin="12px">
+        <Flex justifyContent="center">
+          <Button onClick={onClearBoardClick}>{clearBoardCopy}</Button>
+        </Flex>
+      </Box>
     </React.Fragment>
   );
 }
