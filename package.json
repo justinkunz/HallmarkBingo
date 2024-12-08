@@ -1,6 +1,6 @@
 {
   "name": "bingo-game",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
